@@ -1,0 +1,45 @@
+<!doctype html>
+
+<html lang="en" >
+  <head>
+    <title>Lunch Checker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles/bootstrap.min.css">
+    <script src="scripts/angular.min.js"></script>
+    <script src="app/lunchCheck.app.js"></script>
+    <style>
+      .message { font-size: 1.3em; font-weight: bold; }
+      .red { color: red; }
+      .green { color: green; }
+      #lunch-menu.red { border: 1px solid red; }
+      #lunch-menu.green { border: 1px solid green; }
+    </style>
+  </head>
+<body ng-app="LunchCheck">
+   <div class="container"
+        ng-controller="lunchCheckController">
+     <h1>Lunch Checker</h1>
+     <h5>Empty items ('', ' ', "", "  " etc) wont be counted</h5>
+         <div class="form-group">
+             <input id="lunch-menu" 
+                    type="text"
+                    placeholder="list comma separated dishes you usually have for lunch"
+                    class="form-control" 
+                    ng-class="{'red': redClass, 'green': greenClass }"
+                    ng-model="lunchDishes"
+                    ng-change="resetData()"/>
+         </div>
+         <div class="form-group">
+             <button class="btn btn-default"
+                     ng-click="checkLunch()">Check If Too Much</button>
+         </div>
+         <div class="form-group message"
+              ng-show="showMessage">
+            <span>Items count: {{ itemsCount }}</span><br>
+           <!-- Your message can go here. -->
+           <span ng-class="{'red': redClass, 'green': greenClass }"> {{ checkMessage }} </span>
+         </div>
+   </div>
+
+</body>
+</html>
