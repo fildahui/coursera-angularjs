@@ -19,13 +19,13 @@
 
         $scope.checkLunch = function() {
             
-            if ($scope.lunchDishes == '') {
+            var tokens = $scope.lunchDishes.split(',').filter(function(i) { return i.trim() != ''; });
+            if ($scope.lunchDishes == '' || tokens.length == 0) {
                 $scope.checkMessage = 'Please enter data first';
                 $scope.redClass = true;
                 $scope.greenClass = false;
             }
             else {
-                var tokens = $scope.lunchDishes.split(',').filter(function(i) { return i.trim() != ''; });
                 $scope.itemsCount = tokens.length;
                 $scope.checkMessage = tokens.length < 4 ? 'Enojy!' : 'Too Much!';
                 $scope.redClass = false;
