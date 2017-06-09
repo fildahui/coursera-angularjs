@@ -20,7 +20,7 @@
         $scope.checkLunch = function() {
             
             var tokens = $scope.lunchDishes.split(',').filter(function(i) { return i.trim() != ''; });
-            if ($scope.lunchDishes == '' || tokens.length == 0) {
+            if (tokens.length == 0) {
                 $scope.checkMessage = 'Please enter data first';
                 $scope.redClass = true;
                 $scope.greenClass = false;
