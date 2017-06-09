@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="styles/bootstrap.min.css">
     <script src="scripts/angular.min.js"></script>
-    <script src="app/lunchCheck.app.js"></script>
+    <script src="app/app.js"></script>
     <style>
       .message { font-size: 1.3em; font-weight: bold; }
       .red { color: red; }
@@ -19,7 +19,7 @@
    <div class="container"
         ng-controller="lunchCheckController">
      <h1>Lunch Checker</h1>
-     <h5>Empty items ('', ' ', "", "  " etc) wont be counted</h5>
+     <h5>Empty items ('', ' ', "", "  " etc) won't be considered</h5>
          <div class="form-group">
              <input id="lunch-menu" 
                     type="text"
