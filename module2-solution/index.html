@@ -51,7 +51,7 @@
      <ul>
          <li ng-repeat="item in boughtItems">
              <span>Bought {{ item.quantity}}&nbsp;{{ item.name }}</span>
-             <button class="btn btn-default" ng-click="discardBoughtItem(item.name)"><span class="glyphicon glyphicon-remove"></span> Discard</button></li>
+             <!--<button class="btn btn-default" ng-click="discardBoughtItem(item.name)"><span class="glyphicon glyphicon-remove"></span> Discard</button></li>-->
          </li>
      </ul>
      <div class="emptyMessage" ng-if="boughtItems == null || boughtItems.length < 1">Nothing bought yet.</div>
