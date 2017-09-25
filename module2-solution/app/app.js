@@ -78,8 +78,10 @@
 
     toBuyController.$inject = ['$scope', 'ShoppingListCheckOffService'];
     function toBuyController($scope, ShoppingListCheckOffService) {
-        $scope.buyItem = buyItem;
-        $scope.toBuyItems = ShoppingListCheckOffService.toBuyItems;
+        var tbc = this;
+        
+        tbc.buyItem = buyItem;
+        tbc.toBuyItems = ShoppingListCheckOffService.toBuyItems;
         
         function buyItem(itemName) {
             if (ShoppingListCheckOffService.buyItem(itemName)) {
@@ -90,8 +92,10 @@
 
     alreadyBoughtController.$inject = ['$scope', 'ShoppingListCheckOffService'];
     function alreadyBoughtController($scope, ShoppingListCheckOffService) {
-        $scope.discardBoughtItem = discardBoughtItem;
-        $scope.boughtItems = ShoppingListCheckOffService.alreadyBoughtItems;
+        var abc = this;
+
+        abc.discardBoughtItem = discardBoughtItem;
+        abc.boughtItems = ShoppingListCheckOffService.alreadyBoughtItems;
 
         function discardBoughtItem(itemName) {
             if (ShoppingListCheckOffService.discardBoughtItem(itemName)) {
