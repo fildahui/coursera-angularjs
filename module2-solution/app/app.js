@@ -14,7 +14,7 @@
         var toBuyItems = [
             { name: "cookies", quantity: 10 },
             { name: "chips", quantity: 15 },
-            { name: "marshmallow", quantity: 20 },
+            { name: "marshmallows", quantity: 20 },
             { name: "flavoured chips", quantity: 4 },
             { name: "chocolate bars", quantity: 8 },
             { name: "beer (cans)", quantity: 30 }
