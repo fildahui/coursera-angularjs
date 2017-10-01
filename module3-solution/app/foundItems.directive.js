@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('')
+        .module('NarrowItDownApp')
         .directive('foundItems', foundItems);
 
     foundItems.$inject = ['$compile'];
@@ -10,7 +10,7 @@
     function foundItems($compile) {
         return {
             restrict: 'E',
-            templateUrl: 'app/foundITems.template.html',
+            templateUrl: 'app/foundItems.template.html',
             scope: {
                 foundItems: '<',
                 onRemove: '&'

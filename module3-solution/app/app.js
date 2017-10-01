@@ -3,15 +3,12 @@
 
     angular
         .module('NarrowItDownApp', [])
-        .controller('NarrowItDownController', narrowItDownController)
-        .service('MenuSearchService', menuSearchService);
+        .service('MenuSearchService', menuSearchService)
+        .controller('NarrowItDownController', narrowItDownController);
 
 
     menuSearchService.$inject = ['$http', '$q'];
     function menuSearchService($http, $q) {
-        return {
-            getMatchedMenuItems: getMatchedMenuItems
-        };
 
         function getMatchedMenuItems(searchTerm) {
             return $q(function(resolve, reject) {
@@ -22,8 +19,8 @@
                 .then(function(result) {
                     var foundItems = [];
 
-                    result.menu_items.forEach(function (item) {
-                        if () {
+                    result.data.menu_items.forEach(function (item) {
+                        if (item.description.search(searchTerm) >= 0) {
                             foundItems.push(angular.copy(item));
                         }
                     });
@@ -35,10 +32,14 @@
             });
         }
 
+        return {
+            getMatchedMenuItems: getMatchedMenuItems
+        };
+
     }
 
-    narrowItDownController.$inject = ['$scope'];
-    function narrowItDownController($scope, menuSearchService) {
+    narrowItDownController.$inject = ['$scope', 'MenuSearchService'];
+    function narrowItDownController($scope, MenuSearchService) {
         var ctrl = this;
 
         ctrl.searchTerm = '';
@@ -52,10 +53,15 @@
                 return;
             }
 
-            menuSearchService.getMatchedMenuItems(ctrl.searchTerm)
+            ctrl.isLoading = true;
+            MenuSearchService.getMatchedMenuItems(ctrl.searchTerm)
                 .then(function (results) {
                     ctrl.itemsToShow = results;
-                })
+                    ctrl.isLoading = false;
+                }, function(error) {
+                    console.log(error);
+                    ctrl.isLoading = false;
+                });
         }
 
         function removeItem(index) {

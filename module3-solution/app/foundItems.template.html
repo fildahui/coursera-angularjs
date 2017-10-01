@@ -1,3 +1,16 @@
-<div>
+<style type="text/css">
+    .item-box {
+        border: 1px solid silver;
+        margin-bottom: 5px;
+        list-style-type: none;
+    }
+</style>
 
+<div>
+    <ul>
+        <li ng-repeat="item in foundCtrl.foundItems track by $index" class="item-box">
+            <span>{{ item.short_name}} - {{ item.name }}</span>
+            <button ng-click="foundCtrl.removeItem($index)">Don't want this one!</button>
+        </li>
+    </ul>
 </div>
