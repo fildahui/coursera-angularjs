@@ -10,6 +10,7 @@
     <ul>
         <li ng-repeat="item in foundCtrl.foundItems track by $index" class="item-box">
             <span>{{ item.short_name}} - {{ item.name }}</span>
+            <span>{{ item.description }}</span>
             <button ng-click="foundCtrl.removeItem($index)">Don't want this one!</button>
         </li>
     </ul>
