@@ -9,7 +9,10 @@
 
     menuSearchService.$inject = ['$http', '$q'];
     function menuSearchService($http, $q) {
-
+        return {
+            getMatchedMenuItems: getMatchedMenuItems
+        };
+        
         function getMatchedMenuItems(searchTerm) {
             return $q(function(resolve, reject) {
                 $http({
@@ -32,9 +35,7 @@
             });
         }
 
-        return {
-            getMatchedMenuItems: getMatchedMenuItems
-        };
+        
 
     }
 
