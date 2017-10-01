@@ -23,7 +23,9 @@
                     var foundItems = [];
 
                     result.menu_items.forEach(function (item) {
-
+                        if () {
+                            foundItems.push(angular.copy(item));
+                        }
                     });
 
                     resolve(foundItems);
