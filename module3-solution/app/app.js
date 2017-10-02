@@ -21,12 +21,14 @@
                 })
                 .then(function(result) {
                     var foundItems = [];
-
-                    result.data.menu_items.forEach(function (item) {
-                        if (item.description.search(searchTerm) >= 0) {
-                            foundItems.push(angular.copy(item));
-                        }
-                    });
+                    
+                    if(searchTerm != '') {
+                        result.data.menu_items.forEach(function (item) {
+                            if (item.description.search(searchTerm) >= 0) {
+                                foundItems.push(angular.copy(item));
+                            }
+                        });
+                    }
 
                     resolve(foundItems);
                 }, function (error) {
@@ -47,18 +49,17 @@
         ctrl.startSearch = startSearch;
         ctrl.itemsToShow = [];
         ctrl.removeItem = removeItem;
+        ctrl.noItemsFound = false;
 
 
         function startSearch() {
-            if (ctrl.searchTerm == '') {
-                return;
-            }
-
+            
             ctrl.isLoading = true;
             MenuSearchService.getMatchedMenuItems(ctrl.searchTerm)
                 .then(function (results) {
                     ctrl.itemsToShow = results;
                     ctrl.isLoading = false;
+                    ctrl.noItemsFound = results && results.length == 0;
                 }, function(error) {
                     console.log(error);
                     ctrl.isLoading = false;

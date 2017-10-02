@@ -24,6 +24,10 @@
     <div style="clear: both;">
         <found-items found-items="ctrl.itemsToShow" on-remove="ctrl.removeItem(index)"></found-items>
     </div>
+
+    <div class="no-items" ng-show="ctrl.noItemsFound">
+      No items found!
+    </div>
     
   </div>
 

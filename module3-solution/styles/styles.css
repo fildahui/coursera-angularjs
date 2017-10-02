@@ -13,7 +13,12 @@ h1 {
   .block {
     display: block !important;
   }
-
+.no-items {
+        color: red;
+        font-size: 16px;
+        width: 100%;
+        margin: 5px 0;
+    }
   .loader {
     display: none;
     margin-left: 5px;

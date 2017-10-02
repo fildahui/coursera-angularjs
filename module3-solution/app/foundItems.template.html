@@ -1,17 +1,43 @@
 <style type="text/css">
     .item-box {
-        border: 1px solid silver;
+        border-bottom: 1px solid silver;
         margin-bottom: 5px;
         list-style-type: none;
+        padding: 5px;
+        overflow: hidden;
     }
+    ul { padding-left: 0; }
+
+    .left-box {
+        float: left;
+        width: 80%;
+    }
+
+    .right-box {
+        float: right;
+        text-align: right;
+        width: 19%;
+    }
+
+    .item-price { 
+        font-style: italic;
+        font-size: 13px;
+    }
+
 </style>
 
-<div>
+<div ng-show="foundCtrl.foundItems && foundCtrl.foundItems.length > 0">
     <ul>
         <li ng-repeat="item in foundCtrl.foundItems track by $index" class="item-box">
-            <span>{{ item.short_name}} - {{ item.name }}</span>
-            <span>{{ item.description }}</span>
-            <button ng-click="foundCtrl.removeItem($index)">Don't want this one!</button>
+            <div class="left-box">
+                <span style="font-size: 16px;"><b>{{ item.short_name}}</b> - {{ item.name }}</span>
+                <span class="item-price">( {{ foundCtrl.getPortionSize(item) }} {{ foundCtrl.getPrice(item) }} )</span>
+                <br>
+                <span>{{ item.description }}</span>
+            </div>
+            <div class="right-box">
+                <button ng-click="foundCtrl.removeItem($index)">Don't want this one!</button>
+            <div>
         </li>
     </ul>
 </div>
