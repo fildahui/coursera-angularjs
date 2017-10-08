@@ -1,0 +1,15 @@
+<div style="margin-bottom: 10px; font-size: 14px;">
+    <span class="glyphicon glyphicon-arrow-left">
+    </span>
+    <a href="#" ui-sref="categories">Back</a>
+</div>
+<ul>
+    <li ng-repeat="item in $ctrl.list track by $index" class="item-box">
+        <div class="left-box">
+            <span style="font-size: 16px;"><b>{{ item.short_name}}</b> - {{ item.name }}</span>
+            <span class="item-price">( {{ $ctrl.getPortionSize(item) }} {{ $ctrl.getPrice(item) }} )</span>
+            <br>
+            <span>{{ item.description }}</span>
+        </div>
+    </li>
+</ul>

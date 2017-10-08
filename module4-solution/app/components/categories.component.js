@@ -4,23 +4,10 @@
     angular
         .module('MenuApp')
         .component('categories', {
-            templateUrl: 'categories.template.html',
-            controller: categoriesComponentController,
+            templateUrl: 'app/components/categories.template.html',
             bindings: {
-                categories: '<'
+                list: '<'
             }
         });
-
-    function categoriesComponentController() {
-        var $ctrl = this;
-
-        $ctrl.$onInit = function () {
-
-        };
-
-        $ctrl.$doCheck = function () {
-
-        };
-    }
     
 })();

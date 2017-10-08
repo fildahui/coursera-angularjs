@@ -6,36 +6,37 @@
         .config(appConfig);
 
     
-    appConfig.$inject = ['$stateProvider'];
+    appConfig.$inject = ['$stateProvider', '$urlRouterProvider'];
 
-    function appConfig($stateProvider) {
+    function appConfig($stateProvider, $urlRouterProvider) {
+        $urlRouterProvider.otherwise('home');
+
         $stateProvider
-            .state('admin', {
-                url: '/admin',
-                abstract: true,
-                template: '<ui-view/>'
+            .state('home', {
+                url: '/',
+                templateUrl: 'app/templates/home.template.html'
             })
-            .state('admin.shorter-url', {
-                url: '/shorter-url',
-                templateUrl: 'admin/views/shorter-url',
-                controller: 'ShorterUrlController',
-                controllerAs: 'vm',
-                ncyBreadcrumb: {
-                    label: 'Shorter Url'
+            .state('categories', {
+                url: '/categories',
+                templateUrl: 'app/controllers/categories.template.html',
+                controller: 'CategoriesController',
+                controllerAs: 'CatCtrl',
+                resolve: {
+                    categories: ['MenuDataService', function (service){
+                        return service.getAllCategories();
+                    }]
                 }
             })
-            .state('admin.shorter-url.new-shorten-url', {
-                url: '/new-shorter-url',
-                ncyBreadcrumb: {
-                    label: 'New Shorten Url'
-                },
-                views: {
-                    'toolbarView': {
-                        templateUrl: 'admin/views/new-shorter-url',
-                        controller: 'NewShorterUrlController',
-                        controllerAs: 'vm'
-                    }
+            .state('items', {
+                url: '/{category}/items',
+                templateUrl: 'app/controllers/items.template.html',
+                controller: 'ItemsController',
+                controllerAs: 'ItemsCtrl',
+                resolve: {
+                    items: ['$stateParams', 'MenuDataService', function ($stateParams, service){
+                        return service.getItemsForCategory($stateParams.category);
+                    }]
                 }
             });
     }
-})
+})();

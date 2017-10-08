@@ -1,0 +1,14 @@
+<ul>
+    <li ng-repeat="category in $ctrl.list track by $index" class="item-box">
+        <div class="left-box">
+            <span style="font-size: 16px;">
+                <a ui-sref="items({ category: category.short_name })">
+                    <b>{{ category.short_name }}</b> - {{ category.name }}</span>
+                </a>
+            <br>
+            <span>{{ category.special_instructions }}</span>
+        </div>
+
+        
+    </li>
+</ul>
